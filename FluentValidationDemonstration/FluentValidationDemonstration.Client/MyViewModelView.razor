@@ -1,4 +1,4 @@
-﻿@using Blazilla
+﻿@using Morris.Blazor.Validation
 <div style="padding-bottom: 1rem;">
     <div>
         <div>Specified: @ModeSpecified</div>
@@ -6,9 +6,9 @@
     </div>
     <EditForm @ref="_editForm" Model="@_viewModel">
         <DataAnnotationsValidator />
+        <Validate />
         <div style="border-style: solid;border-radius: .5rem; border-color:grey; border-width: 1px; padding: .5rem;             ">
             <b>Summary:</b>
-            <FluentValidator />
             <ValidationSummary />
         </div>
         <div style="padding: .5rem;">
