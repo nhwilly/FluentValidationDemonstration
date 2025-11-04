@@ -1,0 +1,12 @@
+﻿@page "/"
+
+<PageTitle>Home</PageTitle>
+
+
+<MyViewModelView @rendermode="InteractiveServer" ModeSpecified="Server" />
+<MyViewModelView @rendermode="InteractiveWebAssembly" ModeSpecified="WASM" />
+<MyViewModelView @rendermode="InteractiveAuto" ModeSpecified="Auto" />
+
+@code{
+
+}

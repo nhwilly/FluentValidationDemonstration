@@ -1,0 +1,44 @@
+﻿@using Blazilla
+<div style="padding-bottom: 1rem;">
+    <div>
+        <div>Specified: @ModeSpecified</div>
+        <div>Rendered: <b>@RendererInfo.Name</b></div>
+    </div>
+    <EditForm @ref="_editForm" Model="@_viewModel">
+        <DataAnnotationsValidator />
+        <div style="border-style: solid;border-radius: .5rem; border-color:grey; border-width: 1px; padding: .5rem;             ">
+            <b>Summary:</b>
+            <FluentValidator />
+            <ValidationSummary />
+        </div>
+        <div style="padding: .5rem;">
+            Name
+            <InputText @bind-Value="@(_viewModel.Name)" DisplayName="Name" />
+            <ValidationMessage For="() => _viewModel.Name" />
+        </div>
+
+        <div style="padding: .5rem;">
+            Notes
+            <InputText @bind-Value="@(_viewModel.Notes)" DisplayName="Notes" />
+            <ValidationMessage For="() => _viewModel.Notes" />
+        </div>
+
+        <button type="button" @onclick="ValidateFormAsync">Validate</button>
+    </EditForm>
+    <hr />
+</div>
+@code {
+    private MyViewModel _viewModel { get; set; } = new MyViewModel() { Name = "A name", Notes = "Some notes..." };
+    private EditContext? _editContext;
+    private EditForm? _editForm;
+
+    [Parameter, EditorRequired] public string ModeSpecified { get; set; }
+
+    private async Task ValidateFormAsync()
+    {
+        if (_editForm?.EditContext is not null)
+        {
+            var result = await _editForm.EditContext.ValidateAsync();
+        }
+    }
+}
