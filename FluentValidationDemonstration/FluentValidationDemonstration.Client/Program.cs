@@ -9,4 +9,5 @@ builder.Services.AddFormValidation(config =>
     .AddDataAnnotationsValidation()
     .AddFluentValidation(typeof(Program).Assembly)
 );
+//builder.Services.AddScoped<IValidationProviderRepository, ValidationProviderRepository>();
 await builder.Build().RunAsync();

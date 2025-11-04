@@ -6,7 +6,7 @@
     </div>
     <EditForm @ref="_editForm" Model="@_viewModel">
         <DataAnnotationsValidator />
-        <Validate />
+        <Validate  />
         <div style="border-style: solid;border-radius: .5rem; border-color:grey; border-width: 1px; padding: .5rem;             ">
             <b>Summary:</b>
             <ValidationSummary />
@@ -23,7 +23,7 @@
             <ValidationMessage For="() => _viewModel.Notes" />
         </div>
 
-        <button type="button" @onclick="ValidateFormAsync">Validate</button>
+        <button type="button" @onclick="ValidateForm">Validate</button>
     </EditForm>
     <hr />
 </div>
@@ -34,11 +34,11 @@
 
     [Parameter, EditorRequired] public string ModeSpecified { get; set; }
 
-    private async Task ValidateFormAsync()
+    private void ValidateForm()
     {
         if (_editForm?.EditContext is not null)
         {
-            var result = await _editForm.EditContext.ValidateAsync();
+            var result =  _editForm.EditContext.Validate();
         }
     }
 }
